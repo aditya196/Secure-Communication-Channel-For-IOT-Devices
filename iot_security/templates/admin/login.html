@@ -1,0 +1,58 @@
+{% extends 'layout/admin_reg_layout.html' %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-6 col-sm-10">
+            <div class="card">
+                <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: rgb(250, 250, 250);">
+                   Admin-Login
+                </div>
+                <div class="card-body special-card" style="background-color:#fff">
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form.username.label(for="user-id") }}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                            {% if form.username.errors %}
+                                {{ form.username(class="form-control is-invalid", id="user-id", placeholder="Enter Username") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.username.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.username(class="form-control", id="user-id", placeholder="Enter Username") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.password.label(for="user-password") }}
+                            {% if form.password.errors %}
+                                {{ form.password(class="form-control is-invalid", id="user-password", placeholder="Enter Password") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.password.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.password(class="form-control", id="user-password", placeholder="Enter Password") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-outline-success btn-block mx-auto") }}
+                        </div>
+                    </form>
+                        <div class="text-center">
+                            <a href="{{ url_for('admin.registration') }}">Register here</a><br>
+                            <a href="{{ url_for('admin.reset_password_request') }}">Forgot Password?</a>
+                        </div>    
+                    </div>
+            </div>
+                <div class="row justify-content-center mt-5">
+                    <h3>OR</h3>
+                </div>
+                <div class="row justify-content-center mt-5">
+                    <a class="btn btn-success btn-block mx-auto" href="{{ url_for('admin.login_email_request') }}">Login Using Email</a>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,133 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-6 col-sm-10">
+            <div class="card">
+                <div class="card-header text-center" style="background-color:#17252A; color: white;">
+                    ADD PROPERTY 
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form.house_number.label(for="user-house-number") }}
+                            {% if form.house_number.errors %}
+                                {{ form.house_number(class="form-control is-invalid", id="user-house-number", placeholder="Enter House Number") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.house_number.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.house_number(class="form-control", id="user-house-number", placeholder="Enter house number") }}
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.building_name.label(for="user-building-name") }}
+                            {% if form.building_name.errors %}
+                                {{ form.building_name(class="form-control is-invalid", id="user-building-name", placeholder="Enter Building name") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.building_name.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.building_name(class="form-control", id="user-building-name", placeholder="Enter building name") }}
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.street_name.label(for="user-street-name") }}
+                            {% if form.street_name.errors %}
+                                {{ form.street_name(class="form-control is-invalid", id="user-street-name", placeholder="Enter Street name") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.street_name.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.street_name(class="form-control", id="user-street-name", placeholder="Enter Street name") }}
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.pincode.label(for="user-pincode") }}
+                            {% if form.pincode.errors %}
+                                {{ form.pincode(class="form-control is-invalid", id="user-pincode", placeholder="Enter pincode") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.pincode.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.pincode(class="form-control", id="user-pincode", placeholder="Enter pincode") }}
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.state.label(for="user-state") }}
+                            {% if form.state.errors %}
+                                {{ form.state(class="form-control is-invalid", id="user-state", placeholder="Enter state") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.state.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.state(class="form-control", id="user-state", placeholder="Enter state") }}
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.city.label(for="user-city") }}
+                            {% if form.city.errors %}
+                                {{ form.city(class="form-control is-invalid", id="user-city", placeholder="Enter city") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.city.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.city(class="form-control", id="user-city", placeholder="Enter city") }}
+                            {% endif %}
+                        </div>
+
+
+
+
+
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-outline-success btn-block mx-auto") }}
+                        </div>
+                    </form>
+
+                    <script>
+                            let state_select = document.getElementById('user-state');
+                            let city_select = document.getElementById('user-city');
+                            state_select.onchange=function(){
+                                state = state_select.value;
+                                fetch('/user/city/' + state).then(function(response){
+                                    response.json().then(function(data){
+                                        let optionHTML = '';
+
+                                        for (let city of data.cities){
+                                            console.log(city.name);
+                                            optionHTML += '<option value ="' +city.name+ '">'+city.name + '</option>';
+                                    }
+                                    city_select.innerHTML = optionHTML; 
+
+                                    });
+
+                                });
+
+                            }
+
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

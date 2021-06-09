@@ -1,0 +1,106 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+
+
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card">
+                <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: white;">
+                        ADD CITY-STATE FOR REGISTRATION OF PROPERTY
+                </div>
+                <div class="card-body">
+
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+                            <!-- Registration Form Data begins here -->
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12">    
+                                <!-- Input State name here                         -->
+                                <div class="form-group">
+                                    <label for="property">State Name</label>
+                                    <select name="state_name" class="form-control" id="state_name">
+                                        {% for activity in state_info %}
+                                            <option value="{{ activity }}">{{ activity }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">    
+                                    <!-- Input City name here                         -->
+                                    <div class="form-group">
+                                        {{ form.city.label(for="city-name") }}
+                                        {% if form.city.errors %}
+                                            {{ form.city(class="form-control is-invalid", id="city-name", placeholder="Enter City Name") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.city.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.city(class="form-control", id="city-name", placeholder="Enter City Name") }}
+                                        {% endif %}
+                                    </div>
+                            </div>
+                        
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class = "form-group">
+                                        <button type="submit" class="btn btn-outline-success  btn-block mx-auto" name='submit' value="submit">Submit</button> 
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class = "form-group">
+                                    <button type="submit" class="btn btn-outline-danger  btn-block mx-auto" name='submit' value="delete">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <div class="row justify-content-center">
+        
+        <h2 class="">
+            <span> Already Present States & City</span>
+        </h3>
+        <h3 class="">
+    </div>
+    <div class="row justify-content-center">
+        {% if items is not none %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>City</th>
+                    
+                </tr>
+                </thead>
+                {% for item in items %}
+                    <tbody>
+                        <tr>
+                            <td>{{item.state}}</td>
+                            <td>{{item.city}}</td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+        </table>
+        {% else %}
+            <span> No Data Found</span>
+        {% endif %}
+    </div>
+
+</div>
+
+
+{% endblock content%}

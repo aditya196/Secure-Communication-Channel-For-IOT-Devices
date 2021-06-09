@@ -1,0 +1,26 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-sm-10 col-md-8 col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                            <span class="text-center d-block">
+                                <img src="{{ url_for('static', filename='images/avatar-default-icon.png') }}"
+                                    class="img-fluid mx-auto d-block rounded-circle"
+                                    alt="default profile image">
+                            </span>
+                        <h5 class="text-center">{{ current_user.name }}</h5>
+                        <hr>
+                    </div>
+                    <div class="card-footer">
+                        <span class="float-right text-muted">
+                            Joined on: {{ current_user.created_at.strftime('%Y/%m/%d') }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}

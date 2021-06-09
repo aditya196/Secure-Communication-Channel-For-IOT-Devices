@@ -1,0 +1,30 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <img src="{{ url_for('static', filename='images/main.svg') }}"
+                    alt="dashboard" width = "200px" height = "100px" class="img-fluid d-block mx-auto">
+            <div class="jumbotron jumbotron-fluid" style="background-color:transparent !important;">
+                <div class="container">
+                    <h1 class="display-4 text-center">Welcome to <b class="text-primary">AuthElectric</b></h1>
+                    <p class="lead text-center">Please Click <b class="text-success">Admin</b> or <b class="text-primary">User</b> button to continue</p>
+                    <div class="" style="height: 30px;"></div>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2"> </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <a class="btn btn-success btn-block mx-auto" href="{{ url_for('admin.activate') }}">Admin</a>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1"> </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <a class="btn btn-primary btn-block mx-auto" href="{{ url_for('user.user_index') }}">User</a>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

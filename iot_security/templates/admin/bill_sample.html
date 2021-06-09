@@ -1,0 +1,162 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                {% for item in bill_dict %}
+                <div class="card-body p-0">
+                    <div class="row p-5">
+                        <div class="col-md-6 ">
+                            <img class="mg-fluid img-thumbnail" src="{{ url_for('static', filename = 'images/admin_logo.png') }}">
+                        </div>
+                        
+                        <div class="col-md-6 text-right">
+                            <p class="font-weight-bold h3 mb-1">Bill No : {{item.bill_no}} </p>
+                            <p class="text-primary">Date : {{item.date}} </p>
+                        </div>
+                    </div>
+
+
+                    <div class="row pb-4 p-4">
+                            {% for item1 in item.owner_details %}
+                        <div class="col-md-6">
+                            
+                                <p class="font-weight-bold h4 text-success">Client Information</p>
+                                <p class="mb-1 h4 font-weight-bold text-primary"><span class="text-muted">Owner Name : </span> {{item1.owner_name}} </p>
+                                <p class="mb-1"><span class="text-muted">Property Name : </span>{{item1.property_name}}</p>
+                                <p class="mb-1"><span class="text-muted">Country : </span>India</p>
+                                <p class="mb-1"><span class="text-muted">Pincode : </span>{{item1.pincode}}</p>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="col-md-6 text-right">
+                            {% for item1 in item.tenant_details %}
+                            <p class="font-weight-bold h4 text-success">Tenant Details</p>
+                            {% if item1.tenant_name is not none%}
+                                <p class="mb-1 h4 font-weight-bold text-primary"><span class="text-muted">Tenant Name : </span> {{ item1.tenant_name }}</p>
+                            {% endif %}
+
+                        </div>
+                            {% endfor %}
+                    </div>
+                    <hr class="my-2">
+                    <p class="h3 text-center"> Consumed Units Cost
+                    <div class="row p-5">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="border-0 text-uppercase  font-weight-bold">Units Consumed</th>
+                                        <th class="border-0 text-uppercase  font-weight-bold">Unit - Cost </th>
+                                        <th class="border-0 text-uppercase  font-weight-bold">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item1 in item.bill_details %}
+                                        {% for item2 in item1.slab_cost %}
+                                    <tr>
+                                        <td>{{item2.units}}</td>
+                                        <td>₹ {{item2.slab_cost}}</td>
+                                        <td>₹ {{item2.total}}</td>
+                                    </tr> 
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        {% if 'tax_cost' in item1 %}
+                        <p class="h3 text-center"> Tax Added
+                            <div class="row p-5">
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                
+                                                
+                                                <th class="border-0 text-uppercase font-weight-bold">Tax Name</th>
+                                                <th class="border-0 text-uppercase font-weight-bold">Taxable Rate (In %)</th>
+                                                <th class="border-0 text-uppercase font-weight-bold">Tax Amount Added</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                {% for item2 in item1.tax_cost %}
+                                                    {% for k,v in item2.items() %}
+                                                <tr>
+
+
+                                                    <td>{{v.name}}</td>
+                                                    <td>{{v.rate}}</td>
+                                                    <td>₹ {{v.cost}}</td>
+
+                                                </tr>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            
+                                            
+                                            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                        {% else %}
+                            <p class="h3 text-center"> 
+                        {% endif %}
+                        
+                        
+                        {% if 'misc_cost' in item1 %}
+                            <p class="h3 text-center"> Miscellaneous Amount Added
+                                <div class="row p-5">
+                                    <div class="col-md-12">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="border-0 text-uppercase font-weight-bold">ID</th>
+                                                    <th class="border-0 text-uppercase font-weight-bold">Name</th>
+                                                    <th class="border-0 text-uppercase font-weight-bold">Amount</th>
+                                        
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for item2 in item1.misc_cost %}
+                                                {% for k,v in item2.items() %}
+                                            <tr>
+                                                <td>{{k}}</td>
+                                                <td>{{v.name}}</td>
+                                                <td>₹ {{v.amount}}</td>
+                                                
+                                            </tr>
+                                                {% endfor %}
+                                            {% endfor %}
+                                                
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            {% else %}
+                            <p class="h3 text-center"> 
+                            {% endif %}
+                            
+                            
+                            <div class="d-flex flex-row-reverse bg-dark text-white p-1">
+                                <div class="py-3 px-5 text-right">
+                                    <div class="mb-1">Grand Total</div>
+                                    <div class="h3 font-weight-light">₹ {{item1.total}}</div>
+                                </div>
+                            {% endfor %}
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+
+{% endblock content %}
+

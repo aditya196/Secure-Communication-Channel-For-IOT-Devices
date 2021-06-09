@@ -1,0 +1,110 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card">
+                <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: white;">
+                        Set Miscellaneous Tax (in ₹)
+                </div>
+                <div class="card-body">
+
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+                            <!-- Registration Form Data begins here -->
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12">    
+                                <!-- Input server name here                         -->
+                                <div class="form-group">
+                                    {{ form.tax_name.label(for="tax-name") }}
+                                    {% if form.tax_name.errors %}
+                                        {{ form.tax_name(class="form-control is-invalid", id="tax-name", placeholder="Enter tax name") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.tax_name.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.tax_name(class="form-control", id="tax-name", placeholder="Enter tax name") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">    
+                                <!-- Input server reg id name under which this device is here                         -->
+                                <div class="form-group">
+                                    {{ form.tax_amount.label(for="tax_amount") }}
+                                    {% if form.tax_amount.errors %}
+                                        {{ form.tax_amount(class="form-control is-invalid", id="tax_amount", placeholder="Tax Amount. Enter in ₹ but do not use the ₹ sign.") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.tax_amount.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.tax_amount(class="form-control", id="tax_amount", placeholder="Tax Rate. Enter in ₹ but do not use the ₹ sign") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class = "form-group">
+                                        <button type="submit" class="btn btn-outline-success  btn-block mx-auto" name='submit' value="submit">Submit</button> 
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class = "form-group">
+                                    <button type="submit" class="btn btn-outline-danger  btn-block mx-auto" name='submit' value="delete">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+          </div>
+        </div>
+        <br><br><br>
+
+    <div class="row justify-content-center">
+        
+            <span class="display-4"> Already Present Miscellaneous Taxes</span>
+        
+    </div>
+    <br><br>
+    <div class="row justify-content-center">
+        {% if items is not none %}
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>Tax Name</th>
+                    <th>Tax Amount (in ₹)</th>
+                    
+                </tr>
+                </thead>
+                {% for item in items %}
+                    <tbody>
+                        <tr>
+                            <td>{{item.name}}</td>
+                            <td>{{item.amount}}</td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+        </table>
+        {% else %}
+            <span> No Data Found. Please Fill in data.</span>
+        {% endif %}
+    </div>
+
+
+</div>
+
+{% endblock content %}

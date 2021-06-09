@@ -1,0 +1,60 @@
+{% extends 'layout/user_dashboard_layout.html' %}
+{% block content %}
+    <div class="container-fluid mt-1">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-6 col-sm-10">
+                <h1 class="display-4 text-center text-primary">
+                    Owned - Properties
+                    
+                </h1>
+            </div>
+        </div>
+        {% if owner is  none %}
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-6 col-sm-10">
+                <p class="h5 text-center">Opps. You do not own any properties. Please check in the rented property tab. <a class="text-danger" href="{{ url_for('user.displayrentedproperty') }}">Click Here</a></p>
+                <img src="{{ url_for('static', filename='images/owner.svg') }}"
+                    alt="owned-property" width = "450px" height = "100px" class="img-fluid d-block mx-auto mt-3">
+            </div>
+        </div>
+        {% else %}
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-6 col-sm-10">
+                <p class="h5 text-center">Below is a list of the properties you own. </p>
+                <img src="{{ url_for('static', filename='images/owner.svg') }}"
+                    alt="owned-property" width = "250px" height = "100px" class="img-fluid d-block mx-auto mt-3">
+            </div>
+        </div>
+
+        <br><br>
+        <div class="row">
+            {% for item in owner %}
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Property Details</h5>
+                  <p class="card-text text-danger">Flat No / Building Name : {{ item.flat_no }} {{ item.building_name}} </p>
+                  <p class="card-text text-danger">State / City / Pincode : {{ item.state }} / {{ item.city }} / {{ item.pincode }} </p>
+                  <p class="card-text text-danger">Tenant Present : {{ item.tenant_reg_confirm }}</p>
+                  <a href="{{ url_for('user.viewmoreproperty', token=item.id, _external=True) }}" class="my-2 mx-1 btn btn-primary">View More</a>
+                  {% if item.tenant_reg_confirm == true %}
+                        <a href="{{ url_for('user.removetenant', token=item.id, _external=True) }}" class="my-2 mx-1 btn btn-primary">Remove Tenant</a>
+                        <a href="{{ url_for('user.viewtenantdetails', token=item.id, _external=True) }}" class="my-2 mx-1 btn btn-primary">Tenant Details</a>
+                  {% elif item.tenant_reg_confirm == false and item.tenant_id is not none %}
+                    <a href="#" class="my-2 mx-1 btn btn-primary">Revoke Add Tenant</a>
+                  {% else %}
+                        <a href="{{ url_for('user.addtenant')}}" class="my-2 mx-1 btn btn-primary">Add Tenant</a>
+                  {% endif %}
+                  <a href="#" class="my-2 mx-1 btn btn-primary">Update Property data</a>
+                  <a href="#" class="my-2 mx-1 btn btn-primary">Remove Property</a>
+                  <a href="{{ url_for('user.pay_bill', token=item.id, _external=True) }}" class="my-2 mx-1 btn btn-primary">Pay Bill</a>
+                  <a href="{{ url_for('user.current_meter_reading' , token=item.id, _external=True)}}" class="my-2 mx-1 btn btn-primary">Current Reading</a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+{% endblock content %}

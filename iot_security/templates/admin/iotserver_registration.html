@@ -1,0 +1,118 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+
+
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card">
+                <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: white;">
+                        IOT SERVER REG
+                </div>
+                <div class="card-body">
+
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+                            <!-- Registration Form Data begins here -->
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12">    
+                                <!-- Input server name here                         -->
+                                <div class="form-group">
+                                    {{ form.server_reg_name.label(for="server-name") }}
+                                    {% if form.server_reg_name.errors %}
+                                        {{ form.server_reg_name(class="form-control is-invalid", id="server-name", placeholder="Server Registration Name") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.server_reg_name.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.server_reg_name(class="form-control", id="server-name", placeholder="Server Registration Name") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">    
+                                    <!-- Input area name here                         -->
+                                    <div class="form-group">
+                                        <label for="property">Area Name</label>
+                                        <select name="area_name" class="form-control" id="area_name">
+                                            {% for activity in items %}
+                                                <option value="{{ activity.city }}">{{ activity.state }} -> {{ activity.city }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">    
+                                    <!-- Input area name here                         -->
+                                    <div class="form-group">
+                                        {{ form.pincode.label(for="server-pincode") }}
+                                        {% if form.pincode.errors %}
+                                            {{ form.pincode(class="form-control is-invalid", id="sever-pincode", placeholder="Server pincode") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.pincode.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.pincode(class="form-control", id="server-pincode", placeholder="Server pincode") }}
+                                        {% endif %}
+                                    </div>
+                            </div>
+
+                        
+
+                        
+                        </div>
+                        <div class = "form-group">
+                                <button type="submit" class="btn btn-outline-success  btn-block mx-auto">Submit</button> 
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+
+    <div class="row justify-content-center">
+        
+        <h2 class="">
+            <span> States Covered </span>
+        </h3>
+        <h3 class="">
+    </div>
+    <div class="row justify-content-center">
+        {% if items is not none %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>Area</th>
+                    
+                </tr>
+                </thead>
+                {% for item in items %}
+                    <tbody>
+                        <tr>
+                            <td>{{item.state}}</td>
+                            <td>{{item.city}}</td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+        </table>
+        {% else %}
+            <span> No Data Found</span>
+        {% endif %}
+    </div>
+
+
+</div>
+
+
+{% endblock content%}

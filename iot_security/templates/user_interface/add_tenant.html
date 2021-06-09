@@ -1,0 +1,61 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-6 col-sm-10">
+            <div class="card">
+                <div class="card-header text-center" style="background-color:#17252A; color: white;">
+                    ADD TENANT
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form.username.label(for="user-name") }}
+                            {% if form.username.errors %}
+                                {{ form.username(class="form-control is-invalid", id="user-name", placeholder="Enter username") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.username.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.username(class="form-control", id="user-name", placeholder="Enter username") }}
+                            {% endif %}
+                        </div>
+
+
+                        <div class="form-group">
+                            {{ form.phone_number.label(for="user-phone-number") }}
+                            {% if form.phone_number.errors %}
+                                {{ form.phone_number(class="form-control is-invalid", id="user-phone-number", placeholder="Enter phone number") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.phone_number.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.phone_number(class="form-control", id="user-phone-number", placeholder="Enter phone number") }}
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="property">Property - Building Name</label>
+                            <select name="property" class="form-control" id="property">
+                                {% for activity in property %}
+                                    <option value="{{ activity.building_name }}">{{ activity.building_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-outline-success btn-block mx-auto") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

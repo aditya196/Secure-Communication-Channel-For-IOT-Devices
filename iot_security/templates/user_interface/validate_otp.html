@@ -1,0 +1,35 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-6 col-sm-10">
+            <div class="card">
+                <div class="card-header text-center" style="background-color:#17252A; color: white;">
+                    OTP VALIDATION
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form.otp.label(for="user-otp") }}
+                            {% if form.otp.errors %}
+                                {{ form.otp(class="form-control is-invalid", id="user-otp", placeholder="Enter OTP") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.otp.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.otp(class="form-control", id="user-otp", placeholder="Enter otp") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-outline-success btn-block mx-auto") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

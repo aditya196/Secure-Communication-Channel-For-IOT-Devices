@@ -1,0 +1,18 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+    <div class="container-fluid ">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7 col-sm-10">
+                <h1 class="mt-3">
+                    Sorry for the inconvinience!
+                </h1>
+                <img src="{{ url_for('static', filename='error_logo/error_429.svg') }}"
+                    alt="error_429" class="img-fluid d-block mx-auto">
+                <div class="text-center">
+                    <a class="btn btn-primary" href="{{ url_for('main.index') }}">Click Here</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}

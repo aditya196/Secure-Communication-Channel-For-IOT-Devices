@@ -1,0 +1,140 @@
+{% extends 'layout/user_dashboard_layout.html' %}
+{% block content %}
+    <div class="container-fluid mt-5">
+        <div class="row justify-content-center">
+            <div class="col-sm-10 col-md-8 col-lg-8">
+                <div class="card">
+                    <div class="card-header text-center" style="background-color:#17252A; color: white;">
+                        Owner-Data
+                    </div>
+                        <div class="card-body">
+                      
+                        
+
+                            <div class="row">
+                        
+                                <div class="col-lg-6 col-md-6 col-sm-12">                            
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input class="form-control"value = "{{ owner_data.name }}" id="name" disabled>
+
+                                        </input>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                            <label for="email">Email</label>
+                                        <input class="form-control"value = "{{ owner_data.email }}" id = "email" disabled>
+
+                                        </input>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="phone_number">Phone number</label>
+                                        <input class="form-control"value = "{{ owner_data.phone_number }}" id="phone_number" disabled>
+
+                                    </input>
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <br><br><br><br>
+
+        <div class="row justify-content-center">
+            <div class="col-sm-10 col-md-8 col-lg-8">
+                <div class="card">
+                    <div class="card-header text-center" style="background-color:#17252A; color: white;">
+                        Rented Property-Data
+                    </div>
+                        <div class="card-body">
+                      
+                        
+
+                            <div class="row">
+                                    
+                                <div class="col-lg-6 col-md-6 col-sm-12">                            
+                                    <div class="form-group">
+                                        <label for="user_id">Flat Number</label>
+                                        <input class="form-control"value = "{{prop_data.flat_no}}" id="user_id" disabled>
+    
+                                        </input>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">                            
+                                    <div class="form-group">
+                                        <label for="name">Building Name</label>
+                                        <input class="form-control"value = "{{ prop_data.building_name}}" id="name" disabled>
+
+                                        </input>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="username">State</label>
+                                        <input class="form-control"value = "{{ prop_data.state }}" id = "username"disabled>
+
+                                        </input>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                            <label for="email">Pincode</label>
+                                        <input class="form-control"value = "{{ prop_data.pincode }}" id = "email" disabled>
+
+                                        </input>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="phone_number">City</label>
+                                        <input class="form-control"value = "{{ prop_data.city }}" id="phone_number" disabled>
+
+                                    </input>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="aadhar_number">Street</label>
+                                        <input class="form-control"value = "{{ prop_data.street }}" id="aadhar_number" disabled>
+
+                                        </input>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <a class="btn btn-outline-success btn-block mx-auto" href="{{ url_for('user.tenant_property_approve',token=prop_data.id, _external=True) }}">Approve</a>
+                                </div>
+                                
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <a class="btn btn-outline-danger btn-block mx-auto" href="{{ url_for('user.tenant_property_reject',token=prop_data.id, _external=True) }}">Reject</a>
+                                </div>
+                                
+                            </div>
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+{% endblock content %}

@@ -1,0 +1,51 @@
+{% extends 'layout/user_dashboard_layout.html' %}
+{% block content %}
+    <div class="container-fluid mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-6 col-sm-10">
+                <h1 class="display-4 text-center text-success">
+                    Rented - Properties
+                    
+                </h1>
+            </div>
+        </div>
+        {% if rented is none %}
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-6 col-sm-10">
+                <p class="h5 text-center">Opps. You do not have a rented property. Please check in the owned property tab. <a class="display-5 text-danger" href="{{ url_for('user.displayownedproperty') }}">Click Here</a></p>
+                <img src="{{ url_for('static', filename='images/rented.svg') }}"
+                    alt="owned-property" width = "450px" height = "100px" class="img-fluid d-block mx-auto mt-3">
+            </div>
+        </div>
+        {% else %}
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-6 col-sm-10">
+                <p class="h5 text-center">Below is a list of your rented properties . </p>
+                <img src="{{ url_for('static', filename='images/rented.svg') }}"
+                    alt="owned-property" width = "250px" height = "100px" class="img-fluid d-block mx-auto mt-3">
+            </div>
+        </div>
+
+        <br><br>
+        
+        <div class="row">
+            {% for item in rented %}
+            <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Property Details</h5>
+                  <p class="card-text text-danger">Flat No / Building Name : {{ item.flat_no }} {{ item.building_name}} </p>
+                  <p class="card-text text-danger">State / City / Pincode : {{ item.state }} / {{ item.city }} / {{ item.pincode }} </p>
+                <a href="{{ url_for('user.viewmoreproperty', token=item.id, _external=True) }}" class="my-2 mx-1 btn btn-primary">View More</a>
+                <a href="{{ url_for('user.tenantleaveproperty', token=item.id, _external=True) }}" class="my-2 mx-1 btn btn-primary">Leave Property</a>
+                <a href="{{ url_for('user.viewownerdetails', token=item.id, _external=True) }}" class="my-2 mx-1 btn btn-primary">Owner Details</a>
+                <a href="{{ url_for('user.pay_bill', token=item.id, _external=True) }}  " class="my-2 mx-1 btn btn-primary">Pay Bill</a>
+                <a href="{{ url_for('user.current_meter_reading' , token=item.id, _external=True)}}" class="my-2 mx-1 btn btn-primary">Current Reading</a>
+              </div>
+            </div>
+          </div>
+        </div>
+            {% endfor %}
+    </div>
+    {% endif %}
+{% endblock content %}

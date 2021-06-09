@@ -1,0 +1,44 @@
+{% extends 'layout/admin_reg_layout.html' %}
+{% block content %}
+
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="jumbotron jumbotron-fluid" style="background-color:transparent !important;">
+                <div class="container">
+                    <h1 class="display-4 text-center">Welcome To <b class="text-primary">AuthElectric</b></h1>
+                    {% if item is sameas true %}
+                        <h3 class="display-2 text-center">Product Activated</h3>
+                        <p class="lead text-center">Please Click <b class="text-success">Login</b> or <b class="text-primary">Login via Email</b> button to continue</p>
+                        <div class="" style="height: 30px;"></div>
+                        <div class="row">
+                            <div class="col-lg-2 col-md-2 col-sm-2"> </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <a class="btn btn-outline-success btn-block mx-auto" href="{{ url_for('admin.login') }}">Login</a>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1"> </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <a class="btn btn-outline-primary btn-block mx-auto" href="{{ url_for('admin.login_email_request') }}">Login via Email</a>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2"> </div>
+                        </div>
+                    {% else %}
+                        <h3 class="display-6 text-center text-danger">Product Registration</h3>
+                        <p class="lead text-center">The product is not yet registered.</p>
+                        <p class="lead text-center">Please Click on <b class="text-success">Register</b> button to continue.</p>
+                        <div class="" style="height: 30px;"></div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4"> </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <a class="btn btn-outline-success btn-block mx-auto" href="{{ url_for('admin.product_activate') }}">Register</a>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4"> </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

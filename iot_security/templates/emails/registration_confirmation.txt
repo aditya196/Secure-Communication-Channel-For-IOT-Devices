@@ -1,0 +1,2 @@
+Please click the link below to create the account.
+{{ link }}

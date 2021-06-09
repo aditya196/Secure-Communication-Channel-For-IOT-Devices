@@ -1,0 +1,39 @@
+{% extends 'layout/user_dashboard_layout.html' %}
+{% block content %}
+    <div class="container-fluid mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-6 col-sm-10">
+                <h1 class="text-center">
+                    Welcome To AuthElectric
+                    
+                </h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-6 col-sm-10">
+                <img src="{{ url_for('static', filename='images/dashboard.svg') }}"
+                    alt="dashboard" width = "200px" height = "100px" class="img-fluid d-block mx-auto">
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2"> </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <a class="btn btn-outline-success btn-block mx-auto" href="{{ url_for('user.displayownedproperty') }}">Owned Properties</a>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1"> </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <a class="btn btn-outline-danger btn-block mx-auto" href="{{ url_for('user.displayrentedproperty') }}">Rented Properties</a>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2"> </div>
+        </div>
+    </div>
+
+    <script>
+        var someJavaScriptVar = '{{ request.url_root }}';
+        console.log(someJavaScriptVar)
+      </script>
+{% endblock content %}

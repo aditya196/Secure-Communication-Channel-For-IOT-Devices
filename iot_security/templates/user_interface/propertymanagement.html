@@ -1,0 +1,42 @@
+{% extends 'layout/layout.html' %}
+{% block content %}
+
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="jumbotron jumbotron-fluid" style="background-color:transparent !important;">
+                <div class="container">
+                    <h1 class="display-3 text-center">Welcome To <b class="text-primary">AuthElectric</b></h1>
+        
+                        <h3 class="display-6 text-center">You have <b class="text-danger">not</b> registered any Property!</h3>
+                        <p class="lead text-center">Please Click <b class="text-success">Add Property</b> button to continue</p>
+                        <div class="" style="height: 30px;"></div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4"> </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <a class="btn btn-outline-success btn-block mx-auto" href="{{ url_for('user.addproperty') }}">Add Property</a>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4"> </div>
+                            <br><br><br><br>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4"> </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <h3 class="display-6 text-center"> <b class="text-danger">OR</b> </h3>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4"> </div>
+                        </div>
+
+                        <h3 class="display-5 text-center text-danger"></h3>
+                        <h4 class="display-5 text-center">Are you a Tenant?</h4>
+                        <p class="lead text-center">If yes, Please ask your owner to register the property and send you a <b class="text-success">Registration Link</b>.</p>
+                        <div class="" style="height: 30px;"></div>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,83 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+
+{% if items is none %}   
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+            <h2 class="">
+                <span> No records found</span>
+            </h2>    
+    </div>
+    
+    {% else %}
+    
+        <div class="row justify-content-center">
+            <h2 class="">
+                <span> Active devices</span>
+            </h2>    
+        </div>
+        
+        <div class="row justify-content-center">
+                {% if active is defined and active[0] is defined %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Server ID</th>
+                            <th>Id</th>
+                            <th>View More</th>
+                        </tr>
+                        </thead>
+                        {% for item in active %}
+                            <tbody>
+                              <tr>
+                                <td>{{item.server_id}}</td>
+                                <td>{{item.id}}</td>
+                                <td><a class="" href="#">Click Here</a></td>
+                              </tr>
+                            </tbody>
+                        {% endfor %}
+                </table>
+                {% else %}
+                    <span>Sorry. No Data Found</span>
+                    {% endif %}
+        </div>
+
+        <br><br><br>
+        <div class="row justify-content-center">
+
+            <h2 class="">
+                <span> Inactive Devices</span>
+            </h2>
+
+        </div>
+
+        <div class="row justify-content-center">
+            {% if inactive is defined %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Server ID</th>
+                        <th>Id</th>
+                        <th>Edit Device</th>
+                    </tr>
+                    </thead>
+                    {% for item in inactive %}
+                        <tbody>
+                          <tr>
+                            <td>{{item.server_id}}</td>
+                            <td>{{item.id}}</td>
+                            <td><a class="" href="#">Click Here</a></td>
+                          </tr>
+                        </tbody>
+                    {% endfor %}
+            </table>
+            {% else %}
+                <span> No Data Found</span>
+
+        </div>
+        {% endif %}
+
+    {% endif %}
+    
+</div>
+{% endblock content %}

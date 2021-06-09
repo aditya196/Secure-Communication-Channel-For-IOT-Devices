@@ -1,0 +1,133 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+
+
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card">
+                <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: white;">
+                        IOT DEVICE REG
+                </div>
+                <div class="card-body">
+
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+                            <!-- Registration Form Data begins here -->
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12">    
+                                <!-- Input server name here                         -->
+                                <div class="form-group">
+                                    {{ form.device_reg_name.label(for="device-name") }}
+                                    {% if form.device_reg_name.errors %}
+                                        {{ form.device_reg_name(class="form-control is-invalid", id="device-name", placeholder="Device Registration Name") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.device_reg_name.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.device_reg_name(class="form-control", id="device-name", placeholder="Device Registration Name") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">    
+                                <!-- Input State name here                         -->
+                                <div class="form-group">
+                                    <label for="property">Assign Server Name</label>
+                                    <select name="server_name" class="form-control" id="server_name">
+                                        {% for activity in items %}
+                                            <option value="{{ activity.server_reg_name }}">{{ activity.server_reg_name }} -> {{ activity.area }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">    
+                                    <!-- Input area name here                         -->
+                                    <div class="form-group">
+                                        {{ form.address.label(for="device-area") }}
+                                        {% if form.address.errors %}
+                                            {{ form.address(class="form-control is-invalid", id="device-area", placeholder="Device Area") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.address.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.address(class="form-control", id="device-area", placeholder="Device Area") }}
+                                        {% endif %}
+                                    </div>
+                            </div>
+
+    
+                            <div class="col-lg-6 col-md-6 col-sm-12">    
+                                <!-- Input area name here                         -->
+                                <div class="form-group">
+                                    {{ form.prop_type.label(for="prop_type") }}
+                                    {% if form.prop_type.errors %}
+                                        {{ form.prop_type(class="form-control is-invalid", id="prop_type", placeholder="Enter Property Type") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.prop_type.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.prop_type(class="form-control", id="prop_type", placeholder="Enter Property Type") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                        
+                        </div>
+                        <div class = "form-group">
+                                <button type="submit" class="btn btn-outline-success  btn-block mx-auto">Submit</button> 
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+
+    <div class="row justify-content-center">
+        
+        <h2 class="">
+            <span> Already Present Servers</span>
+        </h3>
+        <h3 class="">
+    </div>
+    <div class="row justify-content-center">
+        {% if items is not none %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Server Name</th>
+                    <th>Server Area</th>
+                    <th>Server Status</th>
+                    
+                </tr>
+                </thead>
+                {% for item in items %}
+                    <tbody>
+                        <tr>
+                            <td>{{item.server_reg_name}}</td>
+                            <td>{{item.area}}</td>
+                            <td>{{item.server_reg_confirm}}</td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+        </table>
+        {% else %}
+            <span> No Data Found</span>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock content%}

@@ -1,0 +1,61 @@
+{% extends 'layout/user_dashboard_layout.html' %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-6 col-sm-10">
+            <div class="card">
+                <div class="card-header text-center" style="background-color:#17252A; color: white;">
+                    SUPPORT QUERY
+                </div>
+                <img src="{{ url_for('static', filename='images/support_query.svg') }}"
+                    alt="dashboard" width = "100px" height = "100px" class="img-fluid d-block mx-auto mt-2">
+                <div class="card-body">
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        
+                        
+                        <div class="col-lg-6 col-md-6 col-sm-12">    
+                            <!-- Input area name here                         -->
+                            <div class="form-group">
+                                {{ form.prob_type.label(for="prob_type") }}
+                                {% if form.prob_type.errors %}
+                                    {{ form.prob_type(class="form-control is-invalid", id="prob_type", placeholder="Enter Query Type") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.prob_type.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.prob_type(class="form-control", id="prob_type", placeholder="Enter Query Type") }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ form.prob_text.label(for="prob_text") }}
+                            {% if form.prob_text.errors %}
+                                {{ form.prob_text(class="form-control is-invalid", id="prob_text", placeholder="Details") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.prob_text.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.prob_text(class="form-control", id="prob_text", placeholder="Details") }}
+                            {% endif %}
+                        </div>
+
+
+                        
+                        
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-outline-success btn-block mx-auto") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

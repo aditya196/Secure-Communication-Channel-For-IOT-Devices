@@ -1,0 +1,52 @@
+{% extends 'layout/user_dashboard_layout.html' %}
+{% block content %}
+    <div class="container-fluid mt-5">
+        <div class="row justify-content-center">
+            <div class="col-sm-10 col-md-8 col-lg-8">
+                <div class="card">
+                    <div class="card-header text-center" style="background-color:#17252A; color: white;">
+                        Contact - Information
+                    </div>
+                        <div class="card-body">
+                      
+                        
+
+                            <div class="row">
+                        
+                                <div class="col-lg-6 col-md-6 col-sm-12">                            
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input class="form-control"value = "{{ owner_data.name }}" id="name" disabled>
+
+                                        </input>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                            <label for="email">Email</label>
+                                        <input class="form-control"value = "{{ owner_data.email }}" id = "email" disabled>
+
+                                        </input>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="phone_number">Phone number</label>
+                                        <input class="form-control"value = "{{ owner_data.phone_number }}" id="phone_number" disabled>
+
+                                    </input>
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock content %}

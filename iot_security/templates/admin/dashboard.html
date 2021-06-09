@@ -1,0 +1,271 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+<div class="container-fluid mt-1">
+    
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-2 col-xl-2 d-none d-lg-block d-xl-block" >
+            <div class="card text-center" style="background: linear-gradient(to bottom, #e7e7e7b2 0%, #ffffff 100%);">
+                <img class="card-img-top mt-1" src="{{ url_for('static', filename='images/kyc.svg') }}" width = "75px" height = "75px" alt="active users">
+                <div class="card-body">
+                    <div class="h6 bold">Active Users</div>
+                    <p class="card-text h4 text-danger">{{ data[0] }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-xl-2 d-none d-lg-block d-xl-block" >
+            <div class="card text-center" style="background: linear-gradient(to bottom, #e7e7e7b2 0%, #ffffff 100%);">
+                <img class="card-img-top mt-1" src="{{ url_for('static', filename='images/real-estate.svg') }}" width = "75px" height = "75px" alt="active users">
+                <div class="card-body">
+                    <div class="h6 bold">Property Present</div>
+                    <p class="card-text h4 text-danger">{{ data[1] }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-xl-2 d-none d-lg-block d-xl-block" >
+            <div class="card text-center" style="background: linear-gradient(to bottom, #e7e7e7b2 0%, #ffffff 100%);">
+                <img class="card-img-top mt-1" src="{{ url_for('static', filename='images/payment.svg') }}" width = "75px" height = "75px" alt="active users">
+                <div class="card-body">
+                    <div class="h6 bold">Bills Generated</div>
+                    <p class="card-text h4 text-danger">{{ data[2] }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-xl-2 d-none d-lg-block d-xl-block" >
+            <div class="card text-center" style="background: linear-gradient(to bottom, #e7e7e7b2 0%, #ffffff 100%);">
+                <img class="card-img-top mt-1" src="{{ url_for('static', filename='images/server.svg') }}" width = "75px" height = "75px" alt="active users">
+                <div class="card-body">
+                    <div class="h6 bold">Active Servers</div>
+                    <p class="card-text h4 text-danger">{{ data[3] }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-xl-2 d-none d-lg-block d-xl-block" >
+            <div class="card text-center" style="background: linear-gradient(to bottom, #e7e7e7b2 0%, #ffffff 100%);">
+                <img class="card-img-top mt-1" src="{{ url_for('static', filename='images/collaboration.svg') }}" width = "75px" height = "75px" alt="active users">
+                <div class="card-body">
+                    <div class="h6 bold">Active Admins</div>
+                    <p class="card-text h4 text-danger">{{ data[4] }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-xl-2 d-none d-lg-block d-xl-block" >
+            <div class="card text-center" style="background: linear-gradient(to bottom, #e7e7e7b2 0%, #ffffff 100%);">
+                <img class="card-img-top mt-1" src="{{ url_for('static', filename='images/meter.svg') }}" width = "75px" height = "75px" alt="active users">
+                <div class="card-body">
+                    <div class="h6 bold">Active Devices</div>
+                    <p class="card-text h4 text-danger">{{ data[5] }}</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+    
+
+
+    <div class="row justify-content-center mt-3">
+        
+        
+        <div class="col-lg-4 col-xl-4 d-none d-lg-block d-xl-block">
+            <div class="card text-center">
+                <img class="card-img-top mt-2" src="{{ url_for('static', filename='images/approve.svg') }}" width = "75px" height = "75px" alt="billing">
+                <div class="card-body">
+                    <h5 class="card-title">User-Approvals & Registration</h5>
+                    <a href="{{ url_for('admin.add_citystate') }}" class="my-2 mx-1 btn btn-outline-danger">Add City-State</a>
+                    <a href="{{ url_for('admin.iot_server_registration') }}" class="my-2 mx-1 btn btn-primary">Register-Server</a>
+                    <a href="{{ url_for('admin.iot_device_registration') }}" class="my-2 mx-1 btn btn-primary">Register-Device</a>
+                    {% if 'super_user' == current_user.role %}
+                        <a href="{{ url_for('admin.approveuser') }}" class="my-2 mx-1 btn btn-outline-success">Approve-Consumer</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-xl-4 d-none d-lg-block d-xl-block">
+            <div class="card text-center">
+                <img class="card-img-top mt-2" src="{{ url_for('static', filename='images/tax.svg') }}" width = "75px" height = "75px" alt="billing">
+                <div class="card-body">
+                    <h5 class="card-title">Billing</h5>
+                    {% if 'super_user' == current_user.role %}
+                        <a href="{{ url_for('admin.generate_bill') }}" class="my-2 mx-1 btn btn-outline-danger">Generate Bill</a>
+                        <a href="{{ url_for('admin.bill_setcost') }}" class="my-2 mx-1 btn btn-primary">Set/Delete Slabs</a>
+                        <a href="{{ url_for('admin.bill_settax') }}" class="my-2 mx-1 btn btn-primary">Set/Delete Tax</a>
+                        <a href="{{ url_for('admin.miscellaneous_settax') }}" class="my-2 mx-1 btn btn-primary">Set/Delete Misc.Amt</a>
+                    {% endif %}
+                    <a href="{{ url_for('admin.bill_sample') }}" class="my-2 mx-1 btn btn-outline-success">View Sample Bill</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-xl-4 d-none d-lg-block d-xl-block">
+            <div class="card text-center">
+                <img class="card-img-top mt-2" src="{{ url_for('static', filename='images/gears.svg') }}" width = "75px" height = "75px" alt="billing">
+                <div class="card-body">
+                    <h5 class="card-title">Admin - Settings</h5>
+                    {% if 'super_user' == current_user.role %}
+                        <a href="{{ url_for('admin.add_admins') }}" class="my-2 mx-1 btn btn-outline-danger">Add New Admin</a>
+                    {% endif %}
+                    <a href="#" class="my-2 mx-1 btn btn-primary">Update Username</a>
+                    <a href="#" class="my-2 mx-1 btn btn-primary">Update Password</a>
+                    <a href="#" class="my-2 mx-1 btn btn-primary">Update Email</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <div class="row justify-content-center mt-3">
+            
+        <div class="col-lg-4 col-xl-4 d-none d-lg-block d-xl-block">
+            <div class="card text-center">
+                <img class="card-img-top mt-2" src="{{ url_for('static', filename='images/customer-service.svg') }}" width = "75px" height = "75px" alt="billing">
+                <div class="card-body">
+                    <h5 class="card-title">Support</h5>
+                    <a href="{{ url_for('admin.supportquery') }}" class="my-2 mx-1 btn btn-outline-success">New Queries</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-xl-4 d-none d-lg-block d-xl-block">
+            <div class="card text-center">
+                <img class="card-img-top mt-2" src="{{ url_for('static', filename='images/secure.svg') }}" width = "75px" height = "75px" alt="billing">
+                <div class="card-body">
+                    <h5 class="card-title">IoT Server Login</h5>
+                    <a href="{{ url_for('admin.iot_server_login') }}" class="my-2 mx-1 btn btn-outline-danger">Login</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-xl-4 d-none d-lg-block d-xl-block">
+            <div class="card text-center">
+                <img class="card-img-top mt-2" src="{{ url_for('static', filename='images/status.svg') }}" width = "75px" height = "75px" alt="billing">
+                <div class="card-body">
+                    <h5 class="card-title">Status</h5>
+                    {% if 'super_user' == current_user.role %}
+                        <a href="{{ url_for('admin.enable_disabled_account') }}" class="my-2 mx-1 btn btn-outline-danger">Enable-Account</a> <br>
+                    {% endif %}
+                    <a href="{{ url_for('admin.user_status') }}" class="my-2 mx-1 btn btn-primary">User</a>
+                    <a href="{{ url_for('admin.server_status') }}" class="my-2 mx-1 btn btn-primary">Server</a>
+                    <a href="{{ url_for('admin.device_status') }}" class="my-2 mx-1 btn btn-primary">Device</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3 ">
+        <div class="col-md-6 col-sm-12 col-xs-12 mt-2 mb-2 d-xs-block d-sm-block d-md-block d-lg-none">
+            <div class="dropdown mr-1">
+                <button type="button" class="btn btn-md btn-block btn-outline-success dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                Billing
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                    {% if 'super_user' == current_user.role %}
+                        <a class="dropdown-item" href="{{ url_for('admin.generate_bill') }}">Generate Bill</a>
+                        <a class="dropdown-item" href="{{ url_for('admin.bill_setcost') }}">Set/Delete Slabs</a>
+                        <a class="dropdown-item" href="{{ url_for('admin.bill_settax') }}">Set/Delete Tax</a>
+                        <a class="dropdown-item" href="{{ url_for('admin.miscellaneous_settax') }}">Set/Delete Misc. Amount</a>
+                    {% endif %}
+                    <a class="dropdown-item" href="{{ url_for('admin.bill_sample') }}">Bill Sample</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-xs-12 mt-2 mb-2 d-xs-block d-sm-block d-md-block d-lg-none">
+            <div class="dropdown mr-1">
+                <button type="button" class="btn btn-md btn-block btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                  Registration/Approval
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                    <a class="dropdown-item" href="#">Add City-State</a>
+                    {% if 'super_user' == current_user.role %}
+                        <a class="dropdown-item" href="{{ url_for('admin.approveuser') }}">Approve Consumer</a>
+                    {% endif %}
+                    <a class="dropdown-item" href="{{ url_for('admin.iot_server_registration') }}">Register Server</a>
+                    <a class="dropdown-item" href="{{ url_for('admin.iot_device_registration') }}">Register Device</a>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+    <div class="row justify-content-center mt-3 ">
+        <div class="col-md-6 col-sm-12 col-xs-12 mt-2 mb-2 d-xs-block d-sm-block d-md-block d-lg-none">
+            <div class="dropdown mr-1">
+                <button type="button" class="btn btn-md btn-block btn-outline-success dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                Settings
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                    {% if 'super_user' == current_user.role %}
+                        <a class="dropdown-item" href="{{ url_for('admin.add_admins') }}">Add Admin</a>
+                    {% endif %}
+                    <a class="dropdown-item" href="#">Update Username</a>
+                    <a class="dropdown-item" href="#">Update Password</a>
+                    <a class="dropdown-item" href="#">Update Email</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-xs-12 mt-2 mb-2 d-xs-block d-sm-block d-md-block d-lg-none">
+            <div class="dropdown mr-1">
+                <button type="button" class="btn btn-md btn-block btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                  Support
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                    <a class="dropdown-item" href="{{ url_for('admin.supportquery') }}">New Queries</a>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    
+
+    <div class="row justify-content-center mt-3 ">
+        <div class="col-md-6 col-sm-12 col-xs-12 mt-2 mb-2 d-xs-block d-sm-block d-md-block d-lg-none">
+            <div class="dropdown mr-1">
+                <button type="button" class="btn btn-md btn-block btn-outline-success dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                Status
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                    <a class="dropdown-item" href="{{ url_for('admin.user_status') }}">User Status</a>
+                    <a class="dropdown-item" href="{{ url_for('admin.server_status') }}">Server Status</a>
+                    <a class="dropdown-item" href="{{ url_for('admin.device_status') }}">Device Status</a>
+                    {% if 'super_user' == current_user.role %}
+                        <a class="dropdown-item" href="{{ url_for('admin.enable_disabled_account') }}">Enable Account</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-xs-12 mt-2 mb-2 d-xs-block d-sm-block d-md-block d-lg-none">
+            <div class="dropdown mr-1">
+                <button type="button" class="btn btn-md btn-block btn-outline-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                  IoT Server Login
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                    <a class="dropdown-item" href="{{ url_for('admin.iot_server_login') }}">Login</a>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+    <!-- End of Admin Dashboard -->
+    <div class="row justify-content-center mt-3">
+        <footer class="footer justify-content-center mt-3">
+        <div class="container">
+            Icons made by <a href="https://www.flaticon.com/authors/flat-icons" title="Flat Icons">Flat Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+        </div>
+    </footer>
+</div>
+</div>
+{% endblock content %}

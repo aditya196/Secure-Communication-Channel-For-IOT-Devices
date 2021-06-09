@@ -1,0 +1,48 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        
+            <h2 class="">
+                <span> New Users</span>
+            </h3>
+            <h3 class="">
+    </div>
+
+    <div class="row justify-content-center">
+            {% if items is not none %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Owner Name</th>
+                        <th>Flat Number</th>
+                        <th>Building Name</th>
+                        <th>State</th>
+                        <th>Tenant Present</th>
+                        <th>Approval</th>
+                        
+                        <!-- <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Approve/Reject</th> -->
+                        </tr>
+                    </thead>
+                    {% for item in items %}
+                        <tbody>
+                          <tr>
+                            <td>{{item[1].name}}</td>
+                            <td>{{item[0].flat_no}}</td>
+                            <td>{{item[0].building_name}}</td>
+                            <td>{{item[0].state}}</td>
+                            <td>{{item[0].tenant_id}}</td>
+                            <td><a class="" href="{{ url_for('admin.user_profile',token=item[0].owner_id, property_token=item[0].id, _external=True) }}">Click Here</a></td>
+                          </tr>
+                        </tbody>
+                    {% endfor %}
+            </table>
+            {% else %}
+                <span> No Data Found</span>
+                {% endif %}
+    </div>
+    
+</div>
+{% endblock content %}

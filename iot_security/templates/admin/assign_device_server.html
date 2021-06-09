@@ -1,0 +1,72 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+
+
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="card">
+                <div class="card-header text-center" style="background-color: rgb(7, 88, 117); color: white;">
+                        IOT SERVER-DEVICE REGISTRATION WITH CONSUMER
+                </div>
+                <div class="card-body">
+
+                    <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+                            <!-- Registration Form Data begins here -->
+                            
+                            <div class="col-lg-6 col-md-6 col-sm-12">    
+                                <!-- Input server name here                         -->
+                                <div class="form-group">
+                                    {{ form.server_id.label(for="server-id") }}
+                                    {% if form.server_id.errors %}
+                                        {{ form.server_id(class="form-control is-invalid", id="server-id", placeholder="Assign IOT Server ID") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.server_id.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.server_id(class="form-control", id="server-id", placeholder="Assign IOT Server ID") }}
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">    
+                                    <!-- Input area name here                         -->
+                                    <div class="form-group">
+                                        {{ form.device_id.label(for="device-id") }}
+                                        {% if form.device_id.errors %}
+                                            {{ form.device_id(class="form-control is-invalid", id="device-id", placeholder="Enter Device ID") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.device_id.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.device_id(class="form-control", id="device-id", placeholder="Enter Device ID") }}
+                                        {% endif %}
+                                    </div>
+                            </div>
+
+                            
+                        
+
+                        
+                        </div>
+                        <div class = "form-group">
+                                <button type="submit" class="btn btn-outline-success  btn-block mx-auto">Submit</button> 
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content%}

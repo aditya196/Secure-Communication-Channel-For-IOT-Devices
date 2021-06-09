@@ -1,0 +1,40 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        
+            <h2 class="">
+                <span> Active Servers</span>
+            </h3>
+            <h3 class="">
+    </div>
+
+    <div class="row justify-content-center">
+            {% if items is not none %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Server ID</th>
+                        <th>Area</th>
+                        <th>Pincode</th>
+                        <th>Login</th>
+                    </tr>
+                    </thead>
+                    {% for item in items %}
+                        <tbody>
+                          <tr>
+                            <td>{{item.id}}</td>
+                            <td>{{item.area}}</td>
+                            <td>{{item.pincode}}</td>
+                            <td><a class="" href="{{ url_for('admin.iot_server_validate',token=item.id, _external=True) }}">Click Here</a></td>
+                          </tr>
+                        </tbody>
+                    {% endfor %}
+            </table>
+            {% else %}
+                <span> No Data Found</span>
+                {% endif %}
+    </div>
+    
+</div>
+{% endblock content %}

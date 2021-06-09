@@ -1,0 +1,44 @@
+{% extends 'layout/admin_layout.html' %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        
+            <h2 class="">
+                <span> Active Queries</span>
+            </h3>
+            <h3 class="">
+    </div>
+
+    <div class="row justify-content-center">
+            {% if items is not none %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>User - Id</th>
+                        <th>Ticket Number</th>
+                        <th>Query Type</th>
+                        <th>Problem</th>
+                        <th>Completed</th>
+                        <th>Acknowledge</th>
+                    </tr>
+                    </thead>
+                    {% for item in items %}
+                        <tbody>
+                          <tr>
+                            <td>{{item.user_id}}</td>
+                            <td>{{item.id}}</td>
+                            <td>{{item.help_type}}</td>
+                            <td>{{item.prob_text}}</td>
+                            <td><a class="" href="{{ url_for('admin.supportquery_completed',user_id=item.user_id,support_id=item.id, _external=True) }}">Click Here</a></td>
+                            <td><a class="" href="{{ url_for('admin.supportquery_pending',user_id=item.user_id,support_id=item.id, _external=True) }}">Click Here</a></td>
+                          </tr>
+                        </tbody>
+                    {% endfor %}
+            </table>
+            {% else %}
+                <span> No Data Found</span>
+                {% endif %}
+    </div>
+    
+</div>
+{% endblock content %}
